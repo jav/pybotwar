@@ -7,6 +7,7 @@ class TheRobot(Robot):
     def respond(self):
         kind, angle, dist = self.sensors['PING']
         if self.sensors['TICK'] > self.act_next:
+            self.log('Go')
             self.torque(50)
             self.turret(40)
             self.force(40)
@@ -18,7 +19,7 @@ class TheRobot(Robot):
         if kind == 'r':
             self.log('Wait')
             tick = self.sensors['TICK']
-            self.act_next = tick + 10000
+            self.act_next = tick + 100
 
         self.log(kind)
         if self.sensors['TICK'] % 10 == 0:
