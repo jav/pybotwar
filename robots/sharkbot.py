@@ -8,9 +8,9 @@ class TheRobot(Robot):
         kind, angle, dist = self.sensors['PING']
         if self.sensors['TICK'] > self.act_next:
             self.log('Go')
-            self.torque(50)
+            self.torque(10)
             self.turret(40)
-            self.force(40)
+            self.force(20)
         else:
             self.turret(0)
             self.torque(0)
