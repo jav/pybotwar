@@ -26,7 +26,7 @@ class TheRobot(Robot):
         else:
             self.turret(0)
             self.torque(0)
-            self.force(self.rest_force)
+            self.force(self.rest_force * self.force_direction)
 
         if kind == 'r':
             self.log('Wait')
@@ -39,6 +39,7 @@ class TheRobot(Robot):
                     self.fire(dist)
                 self.log("Heat: %s" % self.sensors['HEAT'])
             elif self.sensors['HEAT'] > 80:
+                self.log("Turret direction: %s" % self.turret_direction)
                 self.turret_direction = -self.turret_direction
                 self.act_next = 0
         if self.health > health:
