@@ -54,6 +54,8 @@ class MainWindow(QtGui.QMainWindow):
         self.ui.setupUi(self)
         self.ui.nbattles_frame.hide()
 
+        self.showMaximized()
+
         self.scene = Scene()
         view = self.ui.arenaview
         view.setScene(self.scene)
