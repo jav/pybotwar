@@ -2,7 +2,8 @@ from robot import Robot
 
 class TheRobot(Robot):
     def initialize(self):
-        self.direction = 1
+        self.force_direction = 1
+        self.turret_direction = 1
         self.act_next = 0
 
     def respond(self):
@@ -10,12 +11,12 @@ class TheRobot(Robot):
         x, y = self.sensors['POS']
         if self.sensors['TICK'] > self.act_next:
             if (self.sensors['TICK'] / 150) % 2 == 0:
-                self.direction = 1
+                self.force_direction = 1
             else:
-                self.direction = -1
+                self.force_direction = -1
             self.torque(25)
-            self.turret(40)
-            self.force(20 * self.direction)
+            self.turret(40 * self.turret_direction)
+            self.force(20 * self.force_direction)
         else:
             self.turret(0)
             self.torque(0)
