@@ -19,7 +19,7 @@ class TheRobot(Robot):
                 self.force_direction = -1
             self.torque(25)
             self.turret(70 * self.turret_direction)
-            self.force(20 * self.force_direction)
+            self.force(30 * self.force_direction)
         else:
             self.turret(0)
             self.torque(0)
