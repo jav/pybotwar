@@ -20,19 +20,19 @@ class TheRobot(Robot):
         
         health = self.sensors['HEALTH']
         
-        if health != self.health:
-            self.torque(90)
-            self.force(100)
-        self.health = health
+        #if health != self.health:
+        self.torque(90)
+        self.force(100)
+        #self.health = health
         
         self.turret(50)
         self.ping()
 
         kind, angle, dist = self.sensors['PING']
         if kind in 'r':
-                self.fire(dist)
-        
+            self.fire(dist)
         
         self.fire()
+    
         
         pass
