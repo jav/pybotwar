@@ -25,6 +25,9 @@ class TheRobot(Robot):
                 if self.sensors['LOADING'] == 0 and  self.sensors['HEAT'] < 80:
                     self.fire(dist)
                     self.log("Heat: %s" % self.sensors['HEAT'])
+            else:
+                self.act_next = 0
+
 
 
         self.ping()
