@@ -20,7 +20,9 @@ class TheRobot(Robot):
             self.log('Wait')
             tick = self.sensors['TICK']
             self.act_next = tick + 100
-            self.fire()
+            if self.sensors['HEAT'] < 100:
+                self.fire()
+                self.log("Heat: %s" % self.sensors['HEAT'])
 
-        self.log(kind)
+
         self.ping()
