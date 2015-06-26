@@ -29,7 +29,7 @@ class TheRobot(Robot):
             self.turret(0)
             self.torque(angle)
 
-            if heat < 100:
+            if heat < 50:
                 self.fire(distance+1)
 
             
