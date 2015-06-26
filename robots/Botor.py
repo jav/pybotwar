@@ -1,11 +1,11 @@
 from robot import Robot
 
 class TheRobot(Robot):
-    
+
     def initialize(self):
         # Will be called once, immediately after robot is created
         # Must finish in less than 1 second
-        self.justFired = False
+        self.previousKind = None
         pass
 
 
@@ -34,12 +34,16 @@ class TheRobot(Robot):
 
             
         elif kind == 'w':
-            self.turret(100)
+            if self.previousKind == 'r' or self.previousKind == 'b':
+                self.turret(-100)
+            else:
+                self.turret(100)
 
         elif kind == 'b':
             self.torque(angle)
             self.force(100)
              
+        self.previousKind = kind
         self.ping()
         ## if tick < 120:
         ##    self.force(100)
