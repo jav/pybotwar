@@ -26,17 +26,15 @@ class TheRobot(Robot):
             self.log('Wait')
             tick = self.sensors['TICK']
             self.act_next = tick + 100
-            if self.sensors['HEAT'] < 100:
-                if self.sensors['LOADING'] == 0 and self.sensors['HEAT'] < 80:
-                    self.turret_direction = -self.turret_direction
-                    if dist < 4:
-                        self.fire()
-                    else:
-                        self.fire(dist)
-                    self.log("Heat: %s" % self.sensors['HEAT'])
-                elif self.sensors['HEAT'] > 80:
-                    self.act_next = 0
-            else:
+            self.log(self.turret_direction)
+            if self.sensors['LOADING'] == 0 and self.sensors['HEAT'] < 80:
+                if dist < 4:
+                    self.fire()
+                else:
+                    self.fire(dist)
+                self.log("Heat: %s" % self.sensors['HEAT'])
+            elif self.sensors['HEAT'] > 80:
+                self.turret_direction = -self.turret_direction
                 self.act_next = 0
 
 
