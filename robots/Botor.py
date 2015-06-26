@@ -19,7 +19,9 @@ class TheRobot(Robot):
         robot_angle = self.sensors['GYRO']
         heat = self.sensors['HEAT']
 
-        self.force(0)        
+        self.force(0)
+        self.torque(0)        
+
         if kind == 'r':
             self.log("ping angle:", angle)
             self.log("turret angle:", turret_angle)
@@ -33,7 +35,9 @@ class TheRobot(Robot):
         elif kind == 'w':
             self.turret(100)
 
+
         elif kind == 'b':
+            self.torque(100)
             self.force(100)
              
         self.ping()
