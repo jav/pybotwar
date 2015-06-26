@@ -27,17 +27,17 @@ class TheRobot(Robot):
             self.log("turret angle:", turret_angle)
             self.log("Kind:", kind)
             self.turret(0)
+            self.torque(angle)
 
-            if heat < 50:
+            if heat < 100:
                 self.fire(distance+1)
 
             
         elif kind == 'w':
             self.turret(100)
 
-
         elif kind == 'b':
-            self.torque(100)
+            self.torque(angle)
             self.force(100)
              
         self.ping()
