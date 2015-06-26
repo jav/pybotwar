@@ -38,8 +38,8 @@ class TheRobot(Robot):
 
         if kind == 'r':
             self.turret(0)
-            self.torque(10)
-##            self.movingTimer = 2
+            self.torque(0)
+#            self.movingTimer = 2
             if loading == 0:
                 self.fire(distance+1)
             
@@ -50,13 +50,13 @@ class TheRobot(Robot):
                 self.turret(-100)
 
         elif kind == 'b':
-            if self.previousKind == 'r' or self.previousKind == 'b':
-                self.turret(100)
-            else:
-                self.turret(-100)
-            self.move(100,2)
-            if angle == robot_angle:
-                self.torque(angle)
+             if self.previousKind == 'r' or self.previousKind == 'b':
+                 self.turret(100)
+             else:
+                 self.turret(-100)
+             if self.previousKind == 'b':
+                 self.move(100,2)
+        
         
         self.previousKind = kind
         self.ping()
