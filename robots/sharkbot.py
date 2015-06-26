@@ -5,10 +5,13 @@ class TheRobot(Robot):
         self.force_direction = 1
         self.turret_direction = 1
         self.act_next = 0
+        self.health = 100
 
     def respond(self):
         kind, angle, dist = self.sensors['PING']
         x, y = self.sensors['POS']
+        health = self.sensors['HEALTH']
+        self.log("Health: %s" % health)
         if self.sensors['TICK'] > self.act_next:
             if (self.sensors['TICK'] / 150) % 2 == 0:
                 self.force_direction = 1
@@ -36,6 +39,8 @@ class TheRobot(Robot):
             elif self.sensors['HEAT'] > 80:
                 self.turret_direction = -self.turret_direction
                 self.act_next = 0
+        if self.health < health:
+            self.force(self.force_direction * 100)
 
-
+        self.health = health
         self.ping()
