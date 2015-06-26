@@ -16,8 +16,7 @@ class TheRobot(Robot):
         #
         # use robot.Robot class methods to control
         
-        self.torque(10)
-        self.force(10)
+        x, y = self.sensors['POS']
         
         health = self.sensors['HEALTH']
         
@@ -29,6 +28,11 @@ class TheRobot(Robot):
         self.turret(50)
         self.ping()
 
+        kind, angle, dist = self.sensors['PING']
+        if kind in 'r':
+                self.fire(dist)
+        
+        
         self.fire()
         
         pass
