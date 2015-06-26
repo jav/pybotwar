@@ -6,6 +6,7 @@ class TheRobot(Robot):
 
     def respond(self):
         kind, angle, dist = self.sensors['PING']
+        x, y = self.sensors['POS']
         if self.sensors['TICK'] > self.act_next:
             self.log('Go')
             self.torque(10)
@@ -24,5 +25,6 @@ class TheRobot(Robot):
                 if self.sensors['LOADING'] == 0 and  self.sensors['HEAT'] < 80:
                     self.fire(dist)
                     self.log("Heat: %s" % self.sensors['HEAT'])
+
 
         self.ping()
