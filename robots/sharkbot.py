@@ -9,7 +9,7 @@ class TheRobot(Robot):
         x, y = self.sensors['POS']
         if self.sensors['TICK'] > self.act_next:
             self.log('Go')
-            self.torque(10)
+            self.torque(25)
             self.turret(40)
             self.force(20)
         else:
