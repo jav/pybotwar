@@ -20,7 +20,7 @@ class TheRobot(Robot):
             else:
                 self.force_direction = -1
             self.torque(25)
-            self.turret(70 * self.turret_direction)
+            self.turret(100 * self.turret_direction)
             self.force(30 * self.force_direction)
             self.rest_force = 0
         else:
@@ -44,7 +44,7 @@ class TheRobot(Robot):
                 self.act_next = 0
         if self.health > health:
             self.log("Health decreased")
-            self.act_next = tick + 100
+            self.act_next = tick + 30
             self.rest_force = 100
 
         self.health = health
