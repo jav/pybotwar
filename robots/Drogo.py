@@ -5,6 +5,7 @@ class TheRobot(Robot):
         # Will be called once, immediately after robot is created
         # Must finish in less than 1 second
         self.health = 100
+        self.speed = 100
 
 
 
@@ -20,10 +21,15 @@ class TheRobot(Robot):
         
         health = self.sensors['HEALTH']
         
-        #if health != self.health:
-        self.torque(90)
-        self.force(100)
-        #self.health = health
+        if health != self.health:
+            self.torque(90)
+            self.speed = 100
+            self.force(self.speed)
+        self.health = health
+        
+        if self.speed > 0:
+            self.speed -= 2
+            self.force(self.speed)
         
         self.turret(50)
         self.ping()
@@ -31,8 +37,3 @@ class TheRobot(Robot):
         kind, angle, dist = self.sensors['PING']
         if kind in 'r':
             self.fire(dist)
-        
-        self.fire()
-    
-        
-        pass
