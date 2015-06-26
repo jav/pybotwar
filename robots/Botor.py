@@ -6,9 +6,13 @@ class TheRobot(Robot):
         # Will be called once, immediately after robot is created
         # Must finish in less than 1 second
         self.previousKind = None
+        self.movingTimer = 0
         pass
 
 
+    def move(self, time):
+        self.movingTimer = time
+        
 
     def respond(self):
         tick = self.sensors['TICK']
@@ -19,8 +23,11 @@ class TheRobot(Robot):
         robot_angle = self.sensors['GYRO']
         heat = self.sensors['HEAT']
 
-        self.force(0)
         self.torque(0)        
+        if self.movingTimer is not 0:
+            self.movingTimer -= 1
+        else:
+            self.force(0)
 
         if kind == 'r':
             self.log("ping angle:", angle)
@@ -40,9 +47,10 @@ class TheRobot(Robot):
                 self.turret(100)
 
         elif kind == 'b':
+            self.movingTimer = 2
             self.torque(angle)
             self.force(100)
-             
+        
         self.previousKind = kind
         self.ping()
         ## if tick < 120:
