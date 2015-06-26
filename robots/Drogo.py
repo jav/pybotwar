@@ -25,15 +25,23 @@ class TheRobot(Robot):
             self.torque(90)
             self.speed = 100
             self.force(self.speed)
+        
         self.health = health
+        
+        self.torque(0)
         
         if self.speed > 0:
             self.speed -= 2
             self.force(self.speed)
         
-        self.turret(50)
+        self.turret(100)
         self.ping()
 
         kind, angle, dist = self.sensors['PING']
         if kind in 'r':
             self.fire(dist)
+        elif kind in 'b':
+            self.fire()
+
+
+            
