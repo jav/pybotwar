@@ -48,7 +48,8 @@ class TheRobot(Robot):
 
         elif kind == 'b':
             self.movingTimer = 2
-            self.torque(angle)
+            if angle == robot_angle:
+                self.torque(angle)
             self.force(100)
         
         self.previousKind = kind
